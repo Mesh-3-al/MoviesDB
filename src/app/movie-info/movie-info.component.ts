@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { MovieService } from '../movie.service';
 
@@ -18,8 +18,14 @@ export class MovieInfoComponent implements OnInit {
   constructor(private router: ActivatedRoute, private movieService: MovieService) { }
 
   AddToFavorite() {
-    this.favorites[this.count] = this.movie;
-    this.count += 1;
+    let movies = localStorage.getItem('movies');
+    if (movies === null) {
+      movies = '';
+    }
+
+    movies = movies.concat(this.movie.id + ',');
+    const remove_dup = new Set(movies.split(','));
+    movies += localStorage.setItem('movies', Array.from(remove_dup).join(','));
   }
 
   ngOnInit() {

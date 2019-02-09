@@ -1,5 +1,17 @@
 <div>
     <h1>
-      Your Favorite Movies:
+      Your Favorite Movie:
     </h1>
   </div>
+<button  (click)="getFavorite()">See Your Favorite Movie!</button>
+<div *ngIf="Fmovies">
+    <div class="row">
+          <h2 class="text-center">{{ Fmovies.original_title }}</h2> 
+           <div>
+            <a routerLink="/movie/{{ Fmovies.id }}" class="btn btn-block btn-info">Movie Details</a>
+            </div>
+             <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ Fmovies.poster_path }}"
+              alt="{{ Fmovies.original_title }}" style="height: 460px">
+            <hr>
+    </div>
+</div>
