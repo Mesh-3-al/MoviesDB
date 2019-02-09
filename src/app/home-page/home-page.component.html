@@ -1,0 +1,64 @@
+<div class="container">
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Look for Movies</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form>
+        <div class="row">
+          <div class="col-9">
+            <input type="text" class="form-control" placeholder="Search Movies"
+              name="Movie"
+              [(ngModel)]="Movie">
+          </div>
+          <div class="col-3">
+            <button class="btn-block btn-info form-control" (click)="searchMovies()">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div  class="col-sm-4" *ngFor="let movie of SearchResult; let i = index">
+      <div *ngIf="i < 10">
+          <div class="card-body">
+              <h2 class="text-center">{{ movie.original_title }}</h2>
+              <div>
+              <a routerLink="/movie/{{ movie.id }}"  class="btn btn-block btn-info">Movie Details</a>
+              </div>
+            <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.original_title }}" style="height: 460px">
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  <hr>
+
+  <div>
+    <h1>
+      Latest Movies
+    </h1>
+  </div>
+  <div>
+    {{latest_movies.release_date}}
+  </div>
+  <div class="row">
+    <div  class="col-sm-4" *ngFor="let l of LatestMovies; let i = index">
+      <div *ngIf="i < 10">
+          <div class="card-body">
+              <h2 class="text-center">{{ l.original_title }}</h2>
+              <div>
+              <a routerLink="/movie/{{ l.id }}" class="btn btn-block btn-info">Movie Details</a>
+              </div>
+            <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ l.poster_path }}" alt="{{ l.original_title }}" style="height: 460px">
+            <hr>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

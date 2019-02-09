@@ -1,0 +1,24 @@
+<div class="container">
+
+    <div *ngIf="movie">
+     <button class="btn-block btn-info form-control" (click)="AddToFavorite()">Add to favorite</button>
+      <div class="col-sm-5">
+      <img src="https://image.tmdb.org/t/p/w400/{{ movie.poster_path }}" class="img-fluid" alt="{{ movie.title }}">
+       </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <strong>Title: </strong> {{ movie.title }}
+          </li>
+          <li class="list-group-item">
+            <strong>Description: </strong> {{ movie.overview }}
+          </li>
+          <li class="list-group-item">
+            <strong>Genre: </strong>
+            <span *ngFor="let genre of movie.genres">
+             {{ genre.name }}
+            </span>
+            </li>
+                <a href="https://www.imdb.com/title/{{ movie.imdb_id }}" target="_blank"> IMDB Link </a>
+          </ul>
+    </div>
+  </div>
